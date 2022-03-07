@@ -1,1 +1,1 @@
-# ai-rl
+# multimodal active inference
