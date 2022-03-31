@@ -37,8 +37,8 @@ CHANNEL="${CHANNEL:-aihabitat}"
 conda install -S -y --prefix /usr/local -c "${CHANNEL}" -c conda-forge habitat-sim=0.1.7 headless withbullet "python=${PYTHON_VERSION}" "numpy=${NUMPY_VERSION}" "pillow=${PIL_VERSION}" "cffi=${CFFI_VERSION}" "scipy=${SCIPY_VERSION}" "numba=${NUMBA_VERSION}"
 
 # Shallow GIT clone for speed
-git clone --branch stable https://github.com/facebookresearch/habitat-lab.git@v0.1.7 --depth 1
-git clone --branch stable https://github.com/facebookresearch/habitat-sim.git@v0.1.7 --depth 1
+git clone --branch stable https://github.com/facebookresearch/habitat-lab.git -b v0.1.7 --depth 1
+git clone --branch stable https://github.com/facebookresearch/habitat-sim.git -b v0.1.7 --depth 1
 
 # Install Requirements.
 cd /content/habitat-lab/
