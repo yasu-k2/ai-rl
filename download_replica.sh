@@ -4,7 +4,7 @@
 set -e
 
 DATASET_PATH=data
-echo -e "\nDownloading and decompressing Replica to $1. The script can resume\npartial downloads -- if your download gets interrupted, simply run it again.\n"
+echo -e "\nDownloading and decompressing Replica to $DATASET_PATH. The script can resume\npartial downloads -- if your download gets interrupted, simply run it again.\n"
 
 for p in {a..q}
 do
