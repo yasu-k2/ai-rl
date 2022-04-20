@@ -163,8 +163,8 @@ class AudioVisualMazeEnv():
         print(f'Re-initialized location to {self.init_state}')
         obs = self.current_state
         print(f'..and sampled observation {obs}')
-        #return obs
-        return obs, 0, 0, {}
+        return obs
+        #return obs, 0, 0, {}
 
     def render(self):
       maze_array = copy.deepcopy(self.maze_array)
