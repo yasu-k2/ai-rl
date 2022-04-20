@@ -112,7 +112,7 @@ class AudioVisualMazeEnv():
     
     def make_distance_bins(self,n_div_sound):
       M = int(round((self.maze_array.shape[0]**2+self.maze_array.shape[1]**2)**0.5)) # 最大の距離
-      return np.linspace(1, n_div_sound, M)
+      return np.linspace(1, M, n_div_sound)
 
     def step(self,action_label):
 
@@ -144,7 +144,7 @@ class AudioVisualMazeEnv():
         obs = self.current_state # agent always directly observes the grid location they're in 
         
         # 終了判定
-        if self.maze_array[Y_new, X_new]==3: # 壁には進めない
+        if self.maze_array[Y_new, X_new]==3: # goal
           reward = 1
           self.done = 1
         else:
