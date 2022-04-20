@@ -111,7 +111,7 @@ class AudioVisualMazeEnv():
         print(f'Starting state is {start_pos}')
     
     def make_distance_bins(self,n_div_sound):
-      M = int(round((self.maze_array.shape[0]**2+self.maze_array.shape[1]**2)**0.5)) # 最大の距離
+      M = int(round(((self.maze_array.shape[0]-1)**2+(self.maze_array.shape[1]-1)**2)**0.5)) # 最大の距離
       return np.linspace(1, M, n_div_sound)
 
     def step(self,action_label):
@@ -141,10 +141,11 @@ class AudioVisualMazeEnv():
         
         sound_new = self.compute_sound(Y_new, X_new)
         self.current_state = [Y_new, X_new, sound_new] # store the new grid location
-        obs = self.current_state # agent always directly observes the grid location they're in 
+        obs = self.maze_array[self.current_state[0]-1:self.current_state[0]+2,
+                              self.current_state[1]-1:self.current_state[1]+2] # POMDP
         
         # 終了判定
-        if self.maze_array[Y_new, X_new]==3: # goal
+        if self.maze_array[Y_new, X_new]==3: # 壁には進めない
           reward = 1
           self.done = 1
         else:
@@ -161,7 +162,9 @@ class AudioVisualMazeEnv():
     def reset(self):
         self.current_state = list(self.init_state)
         print(f'Re-initialized location to {self.init_state}')
-        obs = self.current_state
+        obs = self.maze_array[self.current_state[0]-1:self.current_state[0]+2,
+                              self.current_state[1]-1:self.current_state[1]+2] # POMDP
+        print_maze(self.maze_array)
         print(f'..and sampled observation {obs}')
         return obs
         #return obs, 0, 0, {}
