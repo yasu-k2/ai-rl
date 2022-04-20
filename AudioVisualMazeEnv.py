@@ -164,5 +164,7 @@ class AudioVisualMazeEnv():
         print(f'..and sampled observation {obs}')
         #return obs
         return obs, 0, 0, {}
-    
-env = AudioVisualMazeEnv()
+
+
+if __name__ == '__main__':
+    env = AudioVisualMazeEnv()
