@@ -78,7 +78,7 @@ def create_maze(maze_width=21, maze_height=21, create=False, seed=0,
           maze_array = np.load(DIR+'/maze_array_h{}_w{}.npy'.format(maze_height, maze_width))
           maze_array[start_pos] = 0 # 初期位置設定
       else:
-        create = True
+          create = True
 
   if create:
       maze_array = np.ones((maze_height, maze_width))
