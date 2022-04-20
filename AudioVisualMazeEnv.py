@@ -157,7 +157,7 @@ class AudioVisualMazeEnv():
         #return obs
         return obs, reward, self.done, {}
 
-    def compute_sound(self, Y, X):
+    def self.compute_sound(self, Y, X):
         distance = (Y - self.end_pos[0])**2 + (X - self.end_pos[1])**2
         return np.digitize(distance, self.bins)
 
@@ -168,7 +168,13 @@ class AudioVisualMazeEnv():
         print(f'..and sampled observation {obs}')
         #return obs
         return obs, 0, 0, {}
+    
+    def render(self):
+      maze_array = self.maze_array
+      maze_array[self.start_pos[0],self.start_pos[1]] = 0
+      maze_array[self.current_state[0],self.current_state[1]] = 2 # 現在位置
+      print_maze(maze_array)
 
-
-if __name__ == '__main__':
-    env = AudioVisualMazeEnv()
+# 以下は実行しなくてOK
+#if __name__ == '__main__':
+#    env = AudioVisualMazeEnv()
