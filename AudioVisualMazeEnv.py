@@ -141,8 +141,9 @@ class AudioVisualMazeEnv():
         
         sound_new = self.compute_sound(Y_new, X_new)
         self.current_state = [Y_new, X_new, sound_new] # store the new grid location
-        obs = self.maze_array[self.current_state[0]-1:self.current_state[0]+2,
-                              self.current_state[1]-1:self.current_state[1]+2] # POMDP
+        V = self.maze_array[self.current_state[0]-1:self.current_state[0]+2,
+                            self.current_state[1]-1:self.current_state[1]+2] # POMDP
+        obs = [V, sound_new]
         
         # 終了判定
         if self.maze_array[Y_new, X_new]==3: # 壁には進めない
@@ -162,8 +163,10 @@ class AudioVisualMazeEnv():
     def reset(self):
         self.current_state = list(self.init_state)
         print(f'Re-initialized location to {self.init_state}')
-        obs = self.maze_array[self.current_state[0]-1:self.current_state[0]+2,
-                              self.current_state[1]-1:self.current_state[1]+2] # POMDP
+        V = self.maze_array[self.current_state[0]-1:self.current_state[0]+2,
+                            self.current_state[1]-1:self.current_state[1]+2] # POMDP
+        sound = self.current_state[2]
+        obs = [V, sound]
         print_maze(self.maze_array)
         print(f'..and sampled observation {obs}')
         return obs
