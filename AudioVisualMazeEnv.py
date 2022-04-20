@@ -2,6 +2,7 @@ import itertools
 import random
 import sys
 from time import sleep
+import copy
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -170,7 +171,7 @@ class AudioVisualMazeEnv():
         return obs, 0, 0, {}
     
     def render(self):
-      maze_array = self.maze_array
+      maze_array = copy.deepcopy(self.maze_array)
       maze_array[self.start_pos[0],self.start_pos[1]] = 0
       maze_array[self.current_state[0],self.current_state[1]] = 2 # 現在位置
       print_maze(maze_array)
