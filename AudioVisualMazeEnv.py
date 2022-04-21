@@ -31,38 +31,40 @@ def print_maze(maze_array):
       else:
         pass
     print("")
-		
- 
+
+
 def fn_create_maze(maze_array, updX, updY):
-	rnd_array = list(range(random_seed))
-	random.shuffle(rnd_array)
-	
-	for index in rnd_array:
-		if updY + direction[index][1] < 1 or updY + direction[index][1] > maze_height-1:
-			continue
-		elif updX + direction[index][0] < 1 or updX + direction[index][0] > maze_width-1:
-			continue
-		elif maze_array[updY+direction[index][1]][updX+direction[index][0]] == 0:
-			continue
-		else:
-			pass
-			
-		maze_array[updY+direction[index][1]][updX+direction[index][0]] = 0
-		if index == 0:
-			maze_array[updY+direction[index][1]+1][updX+direction[index][0]] = 0
-		elif index == 1:
-			maze_array[updY+direction[index][1]-1][updX+direction[index][0]] = 0
-		elif index == 2:
-			maze_array[updY+direction[index][1]][updX+direction[index][0]+1] = 0
-		elif index == 3:
-			maze_array[updY+direction[index][1]][updX+direction[index][0]-1] = 0
-		else:
-			pass
-		
+  maze_height, maze_width = maze_array.shape
+  rnd_array = list(range(random_seed))
+  random.shuffle(rnd_array)
+
+  for index in rnd_array:
+    if updY + direction[index][1] < 1 or updY + direction[index][1] > maze_height-1:
+      continue
+    elif updX + direction[index][0] < 1 or updX + direction[index][0] > maze_width-1:
+      continue
+    elif maze_array[updY+direction[index][1]][updX+direction[index][0]] == 0:
+      continue
+    else:
+      pass
+
+    maze_array[updY+direction[index][1]][updX+direction[index][0]] = 0
+    if index == 0:
+      maze_array[updY+direction[index][1]+1][updX+direction[index][0]] = 0
+    elif index == 1:
+      maze_array[updY+direction[index][1]-1][updX+direction[index][0]] = 0
+    elif index == 2:
+      maze_array[updY+direction[index][1]][updX+direction[index][0]+1] = 0
+    elif index == 3:
+      maze_array[updY+direction[index][1]][updX+direction[index][0]-1] = 0
+    else:
+      pass
+
 		#sleep(0.2)
 		#print_maze(maze_array)
-		fn_create_maze(maze_array, updX+direction[index][0], updY+direction[index][1])
- 
+    fn_create_maze(maze_array, updX+direction[index][0], updY+direction[index][1])
+
+
 def create_maze(maze_width=21, maze_height=21, create=False, seed=0, 
                 start_pos=(1, 1), end_pos='LowerRight',DIR = '/content/drive/MyDrive/final_task'):
   """
