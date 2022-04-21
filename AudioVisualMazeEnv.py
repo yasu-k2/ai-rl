@@ -33,7 +33,7 @@ def print_maze(maze_array):
     print("")
 		
  
-def fn_create_maze(updX, updY):
+def fn_create_maze(maze_array, updX, updY):
 	rnd_array = list(range(random_seed))
 	random.shuffle(rnd_array)
 	
@@ -61,7 +61,7 @@ def fn_create_maze(updX, updY):
 		
 		#sleep(0.2)
 		#print_maze(maze_array)
-		fn_create_maze(updX+direction[index][0], updY+direction[index][1])
+		fn_create_maze(maze_array, updX+direction[index][0], updY+direction[index][1])
  
 def create_maze(maze_width=21, maze_height=21, create=False, seed=0, 
                 start_pos=(1, 1), end_pos='LowerRight',DIR = '/content/drive/MyDrive/final_task'):
@@ -84,7 +84,7 @@ def create_maze(maze_width=21, maze_height=21, create=False, seed=0,
     maze_array[start_pos] = 0 # 初期位置設定
     np.random.seed(seed)
     print('start to create {} x {} maze'.format(maze_height, maze_width))
-    fn_create_maze(start_pos[0], start_pos[1])
+    fn_create_maze(maze_array, start_pos[0], start_pos[1])
     maze_array[start_pos] = 2
     print("finish")
   if end_pos=='LowerRight':
