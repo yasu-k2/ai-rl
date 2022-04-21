@@ -112,7 +112,7 @@ class AudioVisualMazeEnv():
     
     def make_distance_bins(self,n_div_sound):
       M = int(round(((self.maze_array.shape[0]-1)**2+(self.maze_array.shape[1]-1)**2)**0.5)) # 最大の距離
-      return np.linspace(1, M, n_div_sound)
+      return np.linspace(1, M, n_div_sound-1)
 
     def step(self,action_label):
 
